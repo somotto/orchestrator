@@ -86,3 +86,25 @@ services:
         condition: service_healthy
       billing-queue:
         condition: service_healthy
+
+
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: srcs/api-gateway-app
+    restart: always
+    env_file: .env
+    environment:
+      - RABBITMQ_HOST=billing-queue
+      - INVENTORY_APP_HOST=inventory-app
+      - BILLING_APP_HOST=billing-app
+    ports:
+      - ${APIGATEWAY_PORT}:${APIGATEWAY_PORT}
+    depends_on:
+      billing-queue:
+        condition: service_healthy
+
+volumes:
+  inventory-database:
+  billing-database:
+  billing-queue:
