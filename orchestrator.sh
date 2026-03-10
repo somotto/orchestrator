@@ -12,12 +12,21 @@ case "$1" in
             --servers 1 \
             --agents 1 \
             --port "3000:30000@loadbalancer" \
-            --registry-create k3d-registry.localhost:$REGISTRY_PORT
+            --registry-create k3d-registry.localhost:$REGISTRY_PORT \
+            --k3s-arg "--disable=traefik@server:0"
         
         if [ $? -eq 0 ]; then
             echo "Cluster created successfully"
             echo "Waiting for cluster to be ready..."
             kubectl wait --for=condition=Ready nodes --all --timeout=60s
+            
+            echo "Installing Traefik Ingress Controller..."
+            helm repo add traefik https://traefik.github.io/charts
+            helm repo update
+            helm install traefik traefik/traefik \
+                --namespace kube-system \
+                --set ports.web.nodePort=30000
+            
             echo "Applying Kubernetes manifests..."
             kubectl apply -f manifests/
             echo "Deployment complete!"
