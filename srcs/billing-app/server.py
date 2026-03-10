@@ -17,3 +17,7 @@ DB_URI = (
 )
 
 engine = create_engine(DB_URI)
+
+Base.metadata.create_all(engine)
+
+consume_and_store_order(engine)
