@@ -39,6 +39,26 @@ spec:
           name: amqp
         - containerPort: 15672
           name: management
+        livenessProbe:
+          exec:
+            command:
+            - rabbitmq-diagnostics
+            - -q
+            - ping
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 10
+          failureThreshold: 3
+        readinessProbe:
+          exec:
+            command:
+            - rabbitmq-diagnostics
+            - -q
+            - check_running
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
         env:
         - name: RABBITMQ_USER
           valueFrom:
