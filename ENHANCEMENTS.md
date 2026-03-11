@@ -163,25 +163,6 @@ Comprehensive guides for major cloud providers:
 
 **File**: `cloud/eks-deployment.md`
 
-### Google GKE
-- GKE cluster with autoscaling
-- Artifact Registry for images
-- Cloud Logging and Monitoring
-- Workload Identity
-- Velero for backups
-- Cost optimization tips
-
-**File**: `cloud/gke-deployment.md`
-
-### Azure AKS
-- AKS cluster with managed identity
-- Azure Container Registry
-- Azure Monitor integration
-- Ingress with Azure Load Balancer
-- Cost optimization tips
-
-**File**: `cloud/aks-deployment.md`
-
 ## 7. Monitoring Dashboard 
 
 Quick monitoring script for cluster health:
@@ -215,15 +196,3 @@ Quick monitoring script for cluster health:
 | K8s Dashboard | ✅ | monitoring/kubernetes-dashboard.yaml |
 | CI/CD Pipeline | ✅ | .github/workflows/ci-cd.yaml |
 | AWS EKS Guide | ✅ | cloud/eks-deployment.md |
-| Google GKE Guide | ✅ | cloud/gke-deployment.md |
-| Azure AKS Guide | ✅ | cloud/aks-deployment.md |
-
-## Next Steps
-
-1. **Enable monitoring**: Run `./scripts/setup-monitoring.sh`
-2. **Configure CI/CD**: Add kubeconfig secrets to GitHub
-3. **Add tests**: Implement pytest tests for services
-4. **Deploy to cloud**: Follow cloud provider guides
-5. **Set up alerts**: Configure AlertManager rules
-6. **Add SSL/TLS**: Configure cert-manager for HTTPS
-7. **Implement logging**: Deploy ELK or Loki stack
