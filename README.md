@@ -56,7 +56,7 @@ This project deploys a movie inventory and billing system with the following com
 
 ```
 .
-├── manifests/                    # Kubernetes YAML manifests
+├── manifests/                   # Kubernetes YAML manifests
 │   ├── 00-namespace.yaml        # Namespace definition
 │   ├── 01-secrets.yaml          # Database and RabbitMQ credentials
 │   ├── 02-configmap.yaml        # Application configuration
@@ -68,7 +68,7 @@ This project deploys a movie inventory and billing system with the following com
 │   └── 08-api-gateway-deployment.yaml
 ├── scripts/
 │   └── build-and-push.sh        # Build and push Docker images
-├── srcs/                         # Application source code
+├── srcs/                        # Application source code
 │   ├── api-gateway-app/
 │   ├── billing-app/
 │   ├── inventory-app/
